@@ -14,11 +14,11 @@ see the code in https://github.com/java-60TelRan/js-introduction/tree/asynchrono
             class="detailedContainer--image animation-up"
           /><br> <br> <br>
           <span class="detailedContainer--title animation-down"
-            > some common description of your gallery of the cats
+            > some common predefined description of your gallery of the cats
           </span>
         </div>
       </div>
        <ul class="gallery"> 
            here the items of the cat's data
        </ul>
-      </body>
+ </body>
