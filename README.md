@@ -1,26 +1,8 @@
-# HW#25
-## write application based on the data received from themoviedb API 
-### Internet research for getting correct fetch query (consider page and year query parameters)
-Note: consider fetch query and getItemsData updating <br>
- <body>
-    <header>
-      <h2 class="logo">MOVIES</h2>
-    </header>
-    <div class="main">
-      <div class="detailedFrame">
-        <div class="detailedContainer">
-          <img
-            src=""
-            alt="image of movies" <br>
-            class="detailedContainer--image animation-up"
-          /><br> <br> <br>
-          <span class="detailedContainer--title animation-down"
-            > some common predefined description of your gallery of the movies
-          </span>
-        </div>
-      </div>
-       <ul class="gallery"> 
-           here the items of the movies data
-       </ul>
- </body>
- 
+# HW#26
+## Update CW#26 Solution 
+### Add functionality of listing pages received from themoviedb API
+button "next" under gallery items <br>
+pressing "next" butten should trigger the drawing new gallery items related to next page of the movies
+### Update functionality returning to inputting new value of year
+add styles for the button "back" allowing the button placemnet in right top corner of the screen <br>
+fix bug of showing detailed image and title from the previous gallery viewing 

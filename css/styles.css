@@ -138,6 +138,42 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 8px;
 }
+.main.hidden {
+  display: none;
+}
+.input-form {
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.input-form.hidden {
+  display: none;
+}
+.input-buttons {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: space-between;
+  width: 15vw;
+ 
+}
+.input-label {
+  margin-right: 2vw;
+}
+.input-group {
+  margin-right: 5vw;
+}
+.input-button {
+  font-size: 2rem;
+}
+.input-element {
+  font-size: 2rem;
+  width: 20vw;
+}
+
 
 @media screen and (min-width: 500px) {
  

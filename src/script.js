@@ -1,14 +1,17 @@
 const detailedImage = document.querySelector(".detailedContainer--image");
 const detailedTitle = document.querySelector(".detailedContainer--title");
+const formElem = document.getElementById("query-form");
+const mainElem = document.querySelector(".main");
+const inputElements = document.querySelectorAll("#query-form [name]")
 const API_KEY = "7ce8c033f5206c9270d973cb9cc05bf5";
-const YEAR = 2025;
-const PAGE = 1;
+let year;
+let page = 2;
 const LANGUAGE = "en-us"
 const image_prefix = "https://image.tmdb.org/t/p/w500";
 let galleryImages;
 const galleryElem = document.getElementById("cats_gallery");
 async function drawGalleryItems() {
-  const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=${LANGUAGE}&primary_release_year=${YEAR}&page=${PAGE}&sort_by=popularity.desc`);
+  const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=${LANGUAGE}&primary_release_year=${year}&page=${page}&sort_by=popularity.desc`);
   const data = await response.json();
   const itemsData = getItemsData(data.results); //input data from API, output - array of objects
   //  {itemImage, detailedImage, title, detailedTitle}
@@ -18,7 +21,7 @@ async function drawGalleryItems() {
   addLIsteners();
 
 }
-drawGalleryItems();
+
 function getItemsData(data) {
    const itemsData = data.map(record =>
      ({itemImage: getImage(record.poster_path),
@@ -71,3 +74,23 @@ function animate() {
     detailedTitle.classList.add("animation-down");
   }, 0);
 }
+//script actions
+formElem.addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const data = getFormData();
+  year = +data.year;
+  await drawGalleryItems();
+  mainElem.classList.remove("hidden");
+  formElem.classList.add("hidden");
+
+})
+function getFormData() {
+  const inputElementsArr = Array.from(inputElements);
+  const dataObj = inputElementsArr.reduce((res, curElem) => ({...res, [curElem.name]:curElem.value}), {})
+  return dataObj
+}
+function moveToInputData() {
+  mainElem.classList.add("hidden");
+  formElem.classList.remove("hidden");
+}
+

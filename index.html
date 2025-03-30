@@ -22,7 +22,7 @@
     <header>
       <h2 class="logo">Filmagram</h2>
     </header>
-    <div class="main">
+    <section class="main hidden">
       <div class="detailedFrame">
         <div class="detailedContainer">
           <img
@@ -39,7 +39,22 @@
       <ul class="gallery" id="cats_gallery">
         
       </ul>
-    </div>
+    </section>
+    <section>
+      <form id="query-form" class="input-form">
+        <div class="input-group">
+            <label class="input-label">Year</label>
+            <input required class="input-element" type="number" name="year" placeholder="enter year"
+            min="1870" max="2025">
+        </div>
+        <div class="input-buttons">
+          <button type="submit" class="input-button">Submit</button>
+          <button type="reset" class="input-button">Reset</button>
+        </div>
+
+      </form>
+    </section>
+    <button class="button-back" onclick="moveToInputData()">back</button>
     <script src="src/script.js"></script>
   </body>
 </html>
