@@ -3,14 +3,18 @@ const detailedTitle = document.querySelector(".detailedContainer--title");
 const formElem = document.getElementById("query-form");
 const mainElem = document.querySelector(".main");
 const inputElements = document.querySelectorAll("#query-form [name]")
-const API_KEY = "7ce8c033f5206c9270d973cb9cc05bf5";
+const API_KEY = "G";
+const INITIAL_DETAILED_TITLE = 'gallery of the movies from themoviedb API. You may see many movies with images and short description. Sorted by popularity in the descending order' +
+'<span class="for_ellipsis">.....</span>'
+const INITIAL_DETAILED_IMAGE = 'images/film.webp'
 let year;
-let page = 2;
+let page = 1;
 const LANGUAGE = "en-us"
 const image_prefix = "https://image.tmdb.org/t/p/w500";
 let galleryImages;
 const galleryElem = document.getElementById("cats_gallery");
 async function drawGalleryItems() {
+  setInitialDetails();
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=${LANGUAGE}&primary_release_year=${year}&page=${page}&sort_by=popularity.desc`);
   const data = await response.json();
   const itemsData = getItemsData(data.results); //input data from API, output - array of objects
@@ -19,11 +23,15 @@ async function drawGalleryItems() {
   galleryElem.innerHTML = items;
   galleryImages = document.querySelectorAll(".gallery--item_image");
   addLIsteners();
+ 
 
 }
-
+function moveToNextPage() {
+    page++;
+    drawGalleryItems();
+  }
 function getItemsData(data) {
-   const itemsData = data.map(record =>
+   const itemsData = data.filter(record => !!record.poster_path && !!record.backdrop_path).map(record =>
      ({itemImage: getImage(record.poster_path),
        detailedImage: getImage(record.backdrop_path),
       title:record.title,
@@ -79,6 +87,7 @@ formElem.addEventListener("submit", async function(event) {
   event.preventDefault();
   const data = getFormData();
   year = +data.year;
+  page = 1;
   await drawGalleryItems();
   mainElem.classList.remove("hidden");
   formElem.classList.add("hidden");
@@ -94,3 +103,8 @@ function moveToInputData() {
   formElem.classList.remove("hidden");
 }
 
+
+function setInitialDetails() {
+  detailedImage.src = INITIAL_DETAILED_IMAGE;
+  detailedTitle.innerHTML = `year: ${year}; page: ${page} ... ${INITIAL_DETAILED_TITLE}`;
+}

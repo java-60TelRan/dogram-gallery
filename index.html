@@ -26,19 +26,23 @@
       <div class="detailedFrame">
         <div class="detailedContainer">
           <img
-            src="images/film.webp"
+            src=""
             alt="common films lmage"
             class="detailedContainer--image animation-up"
           />
           <span class="detailedContainer--title animation-down"
-            >gallery of the movies from themoviedb API. You may see many movies with images and short description. Sorted by popularity in the descending order
-            <span class="for_ellipsis">.....</span>
+            >
           </span>
         </div>
       </div>
-      <ul class="gallery" id="cats_gallery">
+      <div>
+        <ul class="gallery" id="cats_gallery">
         
       </ul>
+      <button class="button-next" onclick="moveToNextPage()">next</button>
+      </div>
+      
+      <button class="button-back" onclick="moveToInputData()">back</button>
     </section>
     <section>
       <form id="query-form" class="input-form">
@@ -53,8 +57,9 @@
         </div>
 
       </form>
+     
     </section>
-    <button class="button-back" onclick="moveToInputData()">back</button>
+   
     <script src="src/script.js"></script>
   </body>
 </html>
